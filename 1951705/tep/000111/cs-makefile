@@ -1,0 +1,77 @@
+num = 1953493
+stu = stu
+CC = gcc
+CP = /bin/cp
+MK = mkdir
+src = test.c
+version = 1.0
+obj = $(patsubst %.c,%.o,$(src))
+target = $(patsubst %.c,%,$(src))
+sosrc = readconfig.c
+solib = lib_$(num).so
+libPath = $(DESTDIR)/usr/lib64/$(stu)
+sbinName = $(target)_$(num)
+sbinPath = $(DESTDIR)/usr/sbin/$(stu)
+serviceName = $(target)_$(num).service
+servicePath = $(DESTDIR)/etc/systemd/system
+datName = $(num).dat
+datPath = $(DESTDIR)/home/$(stu)/u$(num)
+confName = $(stu)_$(num).conf
+confPath = $(DESTDIR)/etc/$(stu)
+rpmbuildPath = ~/rpmbuild
+rpmName = $(target)_$(num).rpm
+rpmSpecName = $(target)_$(num).spec
+rpmSpecPath = $(rpmbuildPath)/SPECS
+rpmSourcePath = $(rpmbuildPath)/SOURCES
+srcdir = $(target)_$(num)-$(version)
+srctar = $(target)_$(num).tar.gz
+all:$(target)
+$(target):$(obj)
+    $(CC) $(obj) -o $(target) -L$(libPath) -l_$(num)
+
+$(obj):$(src)
+    $(CC) -c $(src) -o $(obj)
+
+.PHONY:so
+so:$(solib)
+    $(MK) -p $(libPath)
+    $(CP) -f $(solib) $(libPath)
+
+$(solib):$(sosrc)
+    $(CC) $(sosrc) -fPIC -shared -o $(solib)
+
+.PHONY:install
+install:
+    $(MK) -p $(libPath)
+    $(CP) -f $(solib) $(libPath)
+    $(MK) -p $(sbinPath)
+    $(CP) -f $(target) $(sbinPath)/$(sbinName)
+    $(MK) -p $(datPath)
+    $(CP) -f $(datName) $(datPath)/$(datName)
+    $(MK) -p $(confPath)
+    $(CP) -f $(confName) $(confPath)/$(confName)
+    $(MK) -p $(servicePath)
+    $(CP) -f $(serviceName) $(servicePath)/$(serviceName)
+    systemctl daemon-reload
+.PHONY:rpm
+rpm:
+    $(MK) -p $(srcdir)
+    $(CP) -f $(src) $(sosrc) $(confName) $(datName) $(serviceName) makefile $(srcdir)
+    tar -cz $(srcdir) -f $(srctar)
+    $(MK) -p $(rpmbuildPath)/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
+    $(CP) -f $(srctar) $(rpmSourcePath)/$(srctar)
+    $(CP) -f $(rpmSpecName) $(rpmSpecPath)/$(rpmSpecName)
+    rpmbuild -ba $(rpmSpecPath)/$(rpmSpecName)
+    $(CP) -f $(rpmbuildPath)/RPMS/x86_64/test_1953493* ./$(rpmName)
+.PHONY:uninstall
+uninstall:
+    rm -f $(libPath)/$(solib) $(sbinPath)/$(sbinName) $(confPath)/$(confName)
+    rm -f $(servicePath)/$(serviceName)
+    systemctl daemon-reload
+    if [ "$(shell ls $(datPath))" = "$(datName)" ];then rm -rf $(datPath);else rm -f $(datPath)/$(datName);fi
+    rm -rf $(rpmbuildPath)
+
+.PHONY:clean
+clean:
+    rm -f $(obj) $(target) $(solib) $(rpmName)
+#rm -rf $(srcdir) $(srctar)

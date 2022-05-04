@@ -1,0 +1,89 @@
+{
+  "files.autoSave": "onFocusChange",
+  // 控制字体大小(像素)。
+  "editor.fontSize": 16,
+  "editor.fontFamily": "Consolas, 'Courier New', monospace",
+  "editor.tabSize": 4,
+  "editor.renderWhitespace": "selection",
+  // 控制光标样式。
+  "editor.cursorStyle": "line",
+  "editor.multiCursorModifier": "alt",
+  // 按 `Tab` 键时插入空格。该设置在 `editor.detectIndentation` 启用时根据文件内容可能会被覆盖。
+  "editor.insertSpaces": true,
+  "editor.wordWrap": "off",
+  "files.defaultLanguage": "txt", // ctrl+N新建文件后默认的语言
+  "editor.formatOnType": false, // 输入分号(C/C++的语句结束标识)后自动格式化当前这一行的代码
+  "editor.suggest.snippetsPreventQuickSuggestions": false,
+  // clangd的snippets有很多的跳转点，不用这个就必须手动触发Intellisense了
+  "editor.acceptSuggestionOnEnter": "on", // 回车键接受Intellisense
+  "editor.snippetSuggestions": "top", // （可选）snippets显示在补全列表顶端，默认是inline
+  "C_Cpp.clang_format_sortIncludes": true,
+  "files.encoding": "gbk",
+  "workbench.colorCustomizations": {
+    "activityBar.foreground": "#81D8D0"
+  },
+
+  /*"terminal.integrated.profiles.linux": {
+        "bash": {
+            "path": "/usr/bin/bash",
+            "icon": "terminal-bash",
+            "args": ["-c","echo 111"]
+        }
+    },
+    "terminal.integrated.cwd":"/root/homework/1951705",*/
+  "terminal.integrated.fontFamily": "Lucida Console",
+  "C_Cpp.errorSquiggles": "Enabled",
+  "files.eol": "\n",
+  "C_Cpp.codeAnalysis.clangTidy.enabled": true,
+  "files.associations": {
+    "fcntl.h": "c",
+    "ioctl.h": "c",
+    "iostream": "cpp",
+    "array": "cpp",
+    "atomic": "cpp",
+    "*.tcc": "cpp",
+    "cctype": "cpp",
+    "clocale": "cpp",
+    "cmath": "cpp",
+    "cstdarg": "cpp",
+    "cstddef": "cpp",
+    "cstdint": "cpp",
+    "cstdio": "cpp",
+    "cstdlib": "cpp",
+    "cstring": "cpp",
+    "ctime": "cpp",
+    "cwchar": "cpp",
+    "cwctype": "cpp",
+    "unordered_map": "cpp",
+    "vector": "cpp",
+    "exception": "cpp",
+    "algorithm": "cpp",
+    "functional": "cpp",
+    "iterator": "cpp",
+    "memory": "cpp",
+    "memory_resource": "cpp",
+    "numeric": "cpp",
+    "optional": "cpp",
+    "random": "cpp",
+    "string": "cpp",
+    "string_view": "cpp",
+    "system_error": "cpp",
+    "tuple": "cpp",
+    "type_traits": "cpp",
+    "utility": "cpp",
+    "fstream": "cpp",
+    "initializer_list": "cpp",
+    "iomanip": "cpp",
+    "iosfwd": "cpp",
+    "istream": "cpp",
+    "limits": "cpp",
+    "new": "cpp",
+    "ostream": "cpp",
+    "sstream": "cpp",
+    "stdexcept": "cpp",
+    "streambuf": "cpp",
+    "typeinfo": "cpp",
+    "cerrno": "cpp",
+    "msg.h": "c"
+  }
+}
