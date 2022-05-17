@@ -27,7 +27,7 @@ int main(int argc, char **argv)
             exit(EXIT_FAILURE);
         }
     }
-    cur_connect.Setaccept_fd_nonblock(cur_fd);
+    cur_connect.Setaccept_fd_nonblock(cur_fd); //·Ç×èÈû
 
     const int MAXLEN = 9;
     char buf[MAXLEN + 1];

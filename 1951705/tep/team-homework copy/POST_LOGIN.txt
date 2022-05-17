@@ -1,0 +1,8 @@
+POST / HTTP/1.1
+Cookie:PHPSESSID=skkv9r3l41qekihessbmmq8og8
+Host: 10.10.108.117:20013
+Connection: keep-alive
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 77
+
+auth_answer=42&input_ans=42&login=µÇÂ¼&password=tongjigzy_02&username=1951705
