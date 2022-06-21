@@ -30,4 +30,4 @@ all: $(socket_optarg_obj_path) $(get_local_ip_obj_path) $(target)
 
 .PHONY: clean
 clean:
-	rm -rf $(obj) $(target) $(socket_optarg_obj_path)
+	rm -rf $(obj) $(target) $(socket_optarg_obj_path) $(get_local_ip_obj_path)
